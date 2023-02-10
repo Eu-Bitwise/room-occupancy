@@ -1,0 +1,15 @@
+{% load static %}
+<html>
+    <head>
+        <title>Occupancy app</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}" />
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+        <!-- Materialize -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.2.1/dist/css/materialize.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.2.1/dist/js/materialize.min.js"></script>     
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>

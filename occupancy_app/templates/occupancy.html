@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Meeting room occupancy</h1>
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">App</span>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        {{ form.select_sensor }}
+                        <label>Select a sensor</label>
+                    </div>
+                    <label>(Optional)</label>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            {{ form.date }}
+                            <label for="Date">Date</label>
+                        </div>
+                        <div class="input-field col s6">
+                            {{ form.time }}
+                            <label for="Time">Time</label>
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit" class="waves-effect waves-light btn" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-panel teal" id="info">
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s6">
+                <p class="white-text">People inside : <span> {{ inside }} </span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('select').formSelect({
+            // specify options here
+        });
+        $('.timepicker').timepicker({
+            twelveHour: false
+        });
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        
+        // Require the time field if a date is indicated
+        $('#date_field').on('change', function() {
+        if ($('#date_field').val() != '') {
+            $('#time_field').prop('required', true);
+        } else {
+            $('#time_field').prop('required', false);
+        }
+        });
+        
+        // Hide or show the box on backend response
+        if ('{{ inside }}' === '') {
+            $('#info').hide();
+        } else {
+            if ('{{ inside }}' == -1) {
+                M.toast({ text: 'No result found' })
+                $('#info').hide();
+            } else {
+                $('#info').show();
+            }
+        }
+    });
+</script>
+{% endblock %}
