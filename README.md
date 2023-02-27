@@ -1,8 +1,8 @@
 # room-occupancy-sensor
-A complete Django app that retrieve the number of occupants in a room
+This is a Django app that can count the number of people in a room using sensors.
 
 # Description
-Check the pdf to get an insight of the app thematic.
+Check the pdf to get an insight of the complete subject.
 
 This include Front/Back and an API using Django Rest Framework
 
